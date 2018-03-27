@@ -27,6 +27,9 @@
       <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
+
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -486,6 +489,10 @@
   
   </select>
   
-  
+
+  <select id="pageListGX" resultType="com.crm.vo.CustomerVo">
+  	SELECT  DISTINCT  c.id, c.name ,SUM(i.sum) AS totalprice FROM customer AS c   LEFT  JOIN customer_order AS o ON c.id=o.customer_id
+		LEFT   JOIN order_item AS i ON o.id =i.order_id GROUP BY c.name ORDER BY (SUM(i.sum)) DESC;
+  </select>
   
 </mapper>

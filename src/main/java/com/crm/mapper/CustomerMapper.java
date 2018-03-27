@@ -2,6 +2,8 @@ package com.crm.mapper;
 
 import com.crm.entity.Customer;
 import com.crm.entity.CustomerExample;
+import com.crm.vo.CustomerVo;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +31,6 @@ public interface CustomerMapper {
     int updateByPrimaryKey(Customer record);
 
 	List<Customer> pageList();
+
+	List<CustomerVo> pageListGX();
 }

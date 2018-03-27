@@ -12,6 +12,12 @@
       <arg column="role_name" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+   <resultMap id="ResultMap" type="com.crm.entity.User" >
+   		<id  column="true_name"  property="trueName" javaType="java.lang.String" />
+  </resultMap>
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -267,5 +273,11 @@
     </foreach>
     
   </delete>
+  
+  <select id="findUserName" resultMap="ResultMap">
+  		SELECT  true_name  FROM USER WHERE role_name= '客户经理'
+  	
+  </select>
+  
   
 </mapper>

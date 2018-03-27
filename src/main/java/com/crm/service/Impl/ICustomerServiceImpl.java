@@ -9,6 +9,7 @@ import com.crm.common.DataGrideResult;
 import com.crm.entity.Customer;
 import com.crm.mapper.CustomerMapper;
 import com.crm.service.ICustomerService;
+import com.crm.vo.CustomerVo;
 @Service
 public class ICustomerServiceImpl implements ICustomerService{
 	@Autowired
@@ -22,6 +23,14 @@ public class ICustomerServiceImpl implements ICustomerService{
 //			System.out.println(customer);
 //		}
 		DataGrideResult<Customer> list =new DataGrideResult<>(total, rows);
+		return list;
+	}
+
+	@Override
+	public DataGrideResult<CustomerVo> pageListGX() {
+		int total = customerMapper.pageListGX().size();
+		List<CustomerVo>  rows =customerMapper.pageListGX();
+		DataGrideResult<CustomerVo> list =new DataGrideResult<>(total, rows);
 		return list;
 	}
 

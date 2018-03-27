@@ -57,4 +57,9 @@ public class UserServiceImpl implements IUserService {
 		return ServerResponse.createError("修改失败");
 	}
 
+	@Override
+	public List<User> findCustomerName() {
+		return userMapper.findUserName();
+	}
+
 }

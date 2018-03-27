@@ -8,6 +8,39 @@
 		<title></title>
 		
        <script>
+       
+				$(function(){
+					/* 初始化添加dialog */
+					$("#dialog").dialog({
+					    closed : true, 
+					    buttons : [
+					        {
+					        	text : "保存",
+					        	iconCls : "icon-ok",
+					        	handler : function() {
+					        		doAddOrUpdate();
+					        	}
+					        },
+					        {
+					        	text : "关闭",
+					        	iconCls : "icon-cancel",
+					        	handler : function() {
+					        		$("#dialog").dialog("close");
+					        	}
+					        }
+					    ]
+						}); 
+				});       
+       
+       
+				var url;
+				/* 打开添加dialog */
+				function openPasswordModifyDialog(){
+					url = "${ctx}/Iuser/update.action";
+					$("#dialog").dialog("open").dialog('setTitle','修改');
+					$("#form").form("clear");
+				}
+       
        	
 				function openTab(title,url,icon){
 					
@@ -49,6 +82,10 @@
         <div data-options="region:'west'" title="导航菜单" style="width: 200px;">
         		 <!--手风琴-->
            <div id="aa" class="easyui-accordion" data-optiopns="border:false,fit:true" >  
+          	 <div title="营销管理"  data-options="iconCls:'icon-yxgl'" style="padding:10px;">
+                  <a href="javascript:openTab('营销机会管理','${ctx}/saleChance/index.action','icon-yxjhgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'" style="width: 150px;">营销机会管理</a>
+                  <a href="javascript:openTab('客户开发计划','${ctx}/saleChance/cusDevPlan.action','icon-khkfjh')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khlsgl'" style="width: 150px;">客户开发计划</a>
+               </div>
               <div title="客户管理"  data-options="iconCls:'icon-khgl'" style="padding:10px;">
                   <a href="javascript:openTab('客户信息管理','${ctx}/customer/show.action ','icon-khxxgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'" style="width: 150px;">客户信息管理</a>
                   <a href="javascript:openTab('客户流失管理','customerLossManage.jsp','icon-khlsgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khlsgl'" style="width: 150px;">客户流失管理</a>
@@ -61,7 +98,7 @@
                   <a href="javascript:openTab('服务归档','customerServiceFile.jsp','icon-fwgd')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fwgd'" style="width: 150px;">服务归档</a>
                </div>
                <div title="统计报表"  data-options="iconCls:'icon-tjbb'" style="padding:10px">
-                  <a href="javascript:openTab('客户贡献分析','khgxfx.jsp','icon-khgxfx')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khgxfx'" style="width: 150px;">客户贡献分析</a>
+                  <a href="javascript:openTab('客户贡献分析','${ctx}/customerGx/index.action','icon-khgxfx')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khgxfx'" style="width: 150px;">客户贡献分析</a>
                   <a href="javascript:openTab('客户构成分析','khgcfx.jsp','icon-khgcfx')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khgcfx'" style="width: 150px;">客户构成分析</a>
                   <a href="javascript:openTab('客户服务分析','khfwfx.jsp','icon-khfwfx')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khfwfx'" style="width: 150px;">客户服务分析</a>
                   <a href="javascript:openTab('客户流失分析','khlsfx.jsp','icon-khlsfx')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khlsfx'" style="width: 150px;">客户流失分析</a>
@@ -86,7 +123,31 @@
         	</div>
         </div>
         
-        
+         <!-- 添加和修改的dialog 开始 -->
+    <div id="dialog" style="width:350;height:280,padding: 10px 20px">
+       <form action="" id="form" method="post">
+           <input type="hidden" id="id" name="id"/>
+           <table cellspacing="8px">
+               <tr>
+                  <td>用户名：</td>
+                  <td><input type="text" id="dataDicValue" name="dataDicValue"   class="easyui-validatebox" required="true"/><font color="red">*<font color="red">*</font> </td>
+               </tr>
+               <tr>
+                  <td>原密码：</td>
+                  <td><input type="text" id="dataDicValue" name="dataDicValue" class="easyui-validatebox" required="true"/><font color="red">*</font></td>
+               </tr>
+               <tr>
+                  <td>新密码：</td>
+                  <td><input type="text" id="dataDicValue" name="dataDicValue" class="easyui-validatebox" required="true"/><font color="red">*</font></td>
+               </tr>
+               <tr>
+                  <td>确认密码：</td>
+                  <td><input type="text" id="dataDicValue" name="dataDicValue" class="easyui-validatebox" required="true"/><font color="red">*</font></td>
+               </tr>
+           </table>
+       </form>
+    </div>
+    <!-- 添加和修改的dialog 结束 -->
         
         <!--下面
         -->

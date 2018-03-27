@@ -27,4 +27,10 @@ public interface SaleChanceMapper {
     int updateByPrimaryKeySelective(SaleChance record);
 
     int updateByPrimaryKey(SaleChance record);
+
+	int deleteAll(String[] idsArray);
+
+	List<SaleChance> pageList(SaleChance saleChance);
+
+	Integer updateDevResult(Integer id, Integer devResult);
 }

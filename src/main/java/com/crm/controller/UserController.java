@@ -1,5 +1,7 @@
 package com.crm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.crm.common.DataGrideResult;
 import com.crm.common.ServerResponse;
+import com.crm.entity.User;
 import com.crm.entity.User;
 import com.crm.service.IUserService;
 
@@ -50,4 +53,17 @@ public class UserController {
 	public ServerResponse update(User user){
 		return userService.update(user);
 	}
+	
+	
+	@RequestMapping("/selectCustomerManagerList")
+	@ResponseBody
+	public List<User>  selectCustomerManagerList(){
+		List<User> findName = userService.findCustomerName();
+		for (User user : findName) {
+			System.out.println(user);
+		}
+		return findName ;
+	}
+	
+	
 }

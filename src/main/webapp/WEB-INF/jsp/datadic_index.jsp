@@ -91,7 +91,7 @@
 	/* 打开添加dialog */
 	function openAddDialog(){
 		url = "${ctx}/datadic/insert.action";
-		$("#dialog").dialog("open");
+		$("#dialog").dialog("open").dialog('setTitle','新增');
 		$("#form").form("clear");
 	}
 	
@@ -172,11 +172,11 @@
                <tr>
                   <td>数据字典名：</td>
                   <td><input type="text" id="dataDicName" name="dataDicName" required="true" class="easyui-combobox" data-options ="
-   				valueField:'dataDicName',
-   				textField:'dataDicName',
-   				url:'${ctx}/datadic/findDatadicName.action',
-   				panelHeight:'auto',
-   				 editable:false,  
+			   				valueField:'dataDicName',
+			   				textField:'dataDicName',
+			   				url:'${ctx}/datadic/findDatadicName.action',
+			   				panelHeight:'auto',
+			   				 editable:false,  
    				" /><font color="red">*</font>  <a href="javascript:openAdd()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a></td>
                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>数据字典值：</td>

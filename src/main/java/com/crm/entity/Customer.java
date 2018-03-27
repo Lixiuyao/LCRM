@@ -47,6 +47,7 @@ public class Customer implements Serializable {
 
     private Integer status;
 
+    
     private static final long serialVersionUID = 1L;
 
     public Customer(Integer id, String num, String name, String region, String managerName, String level, String satisfy, String credit, String address, String postCode, String phone, String fax, String webSite, String licenceNo, String legalPerson, String bankroll, String turnover, String bankName, String bankAccount, String localTaxNo, String nationalTaxNo, Integer status) {

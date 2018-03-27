@@ -32,4 +32,6 @@ public interface UserMapper {
 
 	int deleteAll(String[] idsArray);
 
+	List<User> findUserName();
+
 }
