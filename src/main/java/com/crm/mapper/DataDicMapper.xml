@@ -189,7 +189,6 @@
 	    	<if test="dataDicValue != null and dataDicValue!= '' ">
     			and data_dic_value like concat("%", #{dataDicValue}, "%")
 	    	</if>
-	    	
 	    
 	    </where>
   </select>

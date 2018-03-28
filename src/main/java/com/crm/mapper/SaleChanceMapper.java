@@ -32,5 +32,7 @@ public interface SaleChanceMapper {
 
 	List<SaleChance> pageList(SaleChance saleChance);
 
-	Integer updateDevResult(Integer id, Integer devResult);
+	Integer updateDevResult(@Param(value="id")Integer Id, @Param(value="devResult")Integer devResult);
+
+	List<SaleChance> selectAll();
 }

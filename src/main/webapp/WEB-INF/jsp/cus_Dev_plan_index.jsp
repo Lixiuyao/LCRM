@@ -2,9 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../common/header.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -63,7 +65,7 @@
 		 $.post("${ctx}/saleChance/updateDevResult.action",
 				 {saleChanceId:'${param.saleChanceId}',devResult:devResult},
 				 function(result){
-					 if(result.status == util.SUCCESS){
+					 if(result.code == util.SUCCESS){
 						 $.messager.alert("系统提示","执行成功！");
 						 //执行成功或失败后，隐藏工具条，因为不需要开发了
 						 $("#toolbar").hide();

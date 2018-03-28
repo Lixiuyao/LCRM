@@ -142,7 +142,6 @@
 					return $(this).form('validate');//返回false终止表单提交
 				},
 				success : function(data) {
-					// change the JSON string to javascript object
 					var jsonObj = eval("(" + data + ")");
 					$.messager.alert("系统提示", jsonObj.msg);
 					if(jsonObj.status == util.SUCCESS) {
@@ -151,6 +150,9 @@
 					}
 				}
 			})
+		}
+		function doExportExcel() {
+			window.location.href = "${ctx}/saleChance/exportExcel.action";
 		}
 	</script>
 </head>
@@ -162,7 +164,7 @@
 		<a href="javascript:openAddDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a>
 		<a href="javascript:openUpdateDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
 		<a href="javascript:doDelete()" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
-		<a href="javascript:openDCBG()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">导出表格</a>
+		<a href="javascript:doExportExcel()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">导出表格</a>
 		<a href="javascript:openDRBG()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">导入表格</a>
 		<a href="javascript:openDYBG()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">打印表格</a>
 		 <div>
@@ -227,7 +229,7 @@
 		   		</tr>
 		   		<tr>
 		   			<td>指派给：</td>
-		   			<td><input class="easyui-combobox" id="assignMan" name="assignMan" data-options="panelHeight:'auto',editable:false,valueField:'trueName',textField:'trueName',url:'${ctx}/user/selectCustomerManagerList.action'"/></td>
+		   			<td><input class="easyui-combobox" id="assignMan" name="assignMan" data-options="panelHeight:'auto',editable:false,valueField:'id',textField:'trueName',url:'${ctx}/user/selectCustomerManagerList.action'"/></td>
 		   			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		   			<td>指派时间：</td>
 		   			<td><input type="text" id="assignTime" name="assignTime" readonly="readonly"/></td>

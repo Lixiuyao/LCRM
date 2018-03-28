@@ -22,9 +22,6 @@
 			    {field:"totalprice",title:"订单总金额",width:80,algin:"center"},     
 			    ]],
 		});
-
-
-
 	});
 	
 	

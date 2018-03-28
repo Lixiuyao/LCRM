@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#datagrid").datagrid({
-			url:"${ctx}/user/pageList.action",
+			url:"${ctx}/customer/pageList.action",
 			method:"get",
 			fit : true,
 			fitColumns : true,
@@ -17,15 +17,15 @@
 			toolbar: "#toolbar",
 			columns:[[
 			      {field:"cb",checkbox:true,algin:"center"},  
-			    {field:"id",title:"编号",width:80,algin:"center"},     
-			    {field:"name",title:"用户名",width:80,algin:"center"},     
-			    {field:"password",title:"密码",width:80,algin:"center"},     
-			    {field:"trueName",title:"真实姓名",width:80,algin:"center"}, 
-			    {field:"email",title:"邮箱",width:80,algin:"center"},    
+			    {field:"num",title:"客户编号",width:80,algin:"center"},     
+			    {field:"name",title:"公司名称",width:80,algin:"center"},     
+			    {field:"managerName",title:"客户经理姓名",width:80,algin:"center"},     
+			    {field:"level",title:"客户等级",width:80,algin:"center"}, 
+			    {field:"region",title:"客户地区",width:80,algin:"center"},    
 			    {field:"phone",title:"联系电话",width:80,algin:"center"},     
-			    {field:"roleName",title:"角色名称",width:80,algin:"center"},     
-			         
-			         
+			    {field:"satisfy",title:"客户满意度",width:80,algin:"center"},     
+			    {field:"credit",title:"客户信用度",width:80,algin:"center"},     
+			     
 			    ]],
 		});
 		/* 初始化添加dialog */
@@ -143,33 +143,38 @@
 		);
 		
 	}
-
 	
+	function openContactsTab(){
+		url = "${ctx}//update.action"; 
+		var id =  util.getSelectedIds($('#datagrid').datagrid("getSelections"));
+		if(id.length==0){
+			$.messager.alert("系统提示", "请选择要查看的数据");
+			return;
+		}if(id.length>1){
+			$.messager.alert("系统提示", "仅允许选中一条数据查看");
+			return;
+		}if(id.length==1){
+		  window.parent.openTab('联系人管理','${ctx}/customer/lxrIndex.action?id='+id,'icon-lxr');
+			
+		}
+		
+	
+		
+		
+		
+	}
 	
 </script>
 </head>
 <body>
 	
-	<table id="mTb"  class="easyui-datagrid"  style="width:700px;height:250px" toolbar="#toolbar"
-			data-options="singleSelect:true,fitColumns:true,fit:true,pagination:true,collapsible:true,url:'${ctx}/customer/pageList.action',method:'get'">
-		<thead>
-			<tr>
-				<th data-options="field:'num',width:80">客户编号</th>
-				<th data-options="field:'name',width:100">公司名称</th>
-				<th data-options="field:'managerName',width:80">客户经理姓名</th>
-				<th data-options="field:'level',width:80">客户等级</th>
-				<th data-options="field:'region',width:80,align:'right'">客户地区</th>
-				<th data-options="field:'phone',width:80">联系电话</th>
-				<th data-options="field:'satisfy',width:80">客户满意度</th>
-				<th data-options="field:'credit',width:80">客户信用度</th>
-			</tr>
-		</thead>
-	</table>
+	<table id="datagrid" ></table>
 	<div id="toolbar">
         <a href="javascript:openAddDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
         <a href="javascript:openUpdateDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" >修改</a>
         <a href="javascript:doDelete()" class="easyui-linkbutton" iconCls="icon-remove" plain="true" >删除</a>
-        <a class="easyui-linkbutton l-btn l-btn-small" href="javascript:openNewTab('customerLinkMan','icon-lxr')"
+
+        <a class="easyui-linkbutton l-btn l-btn-small" href="javascript:openContactsTab('customerLinkMan','icon-lxr')"
          iconcls="icon-lxr" group="" id="">联系人管理</a>
         <a class="easyui-linkbutton l-btn l-btn-small" href="javascript:openNewTab('customerContact','icon-lxr')"
          iconcls="icon-jwjl" group="" id="">交往记录管理</a>
@@ -182,7 +187,7 @@
    		 </div>
    	</div>
    
- 	<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
+ 	<div id="dialog" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
             closed="true" buttons="#dlg-buttons">
         <div class="ftitle">客户信息</div>
         <form id="fm" method="post" novalidate>

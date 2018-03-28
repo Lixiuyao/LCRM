@@ -3,8 +3,12 @@ package com.crm.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -76,9 +80,15 @@ public class SaleChanceController {
 	
 	@RequestMapping("/updateDevResult")
 	@ResponseBody
-	public ServerResponse updateDevResult(Integer id,Integer devResult) {
-		System.out.println(id + devResult);
-		return saleChanceService.updateDevResult(id,devResult);
+	public ServerResponse updateDevResult(Integer saleChanceId,Integer devResult) {
+		System.out.println(devResult);
+		System.err.println(saleChanceId);
+		return saleChanceService.updateDevResult(saleChanceId,devResult);
+	}
+	
+	@RequestMapping("/exportExcel")
+	public void exportExcel(HttpServletResponse response){
+		saleChanceService.exportExcel(response);
 	}
 	
 }

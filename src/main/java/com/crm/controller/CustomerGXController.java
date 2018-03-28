@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.crm.common.DataGrideResult;
+import com.crm.common.ServerResponse;
+import com.crm.entity.User;
 import com.crm.service.ICustomerService;
 import com.crm.vo.CustomerVo;
 
@@ -26,6 +28,7 @@ public class CustomerGXController {
 	public DataGrideResult<CustomerVo> pageListGX(){
 		return  customerService.pageListGX();
 	}
+	
 	
 	
 	

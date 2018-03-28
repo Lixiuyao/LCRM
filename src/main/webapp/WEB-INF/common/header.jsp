@@ -17,4 +17,4 @@
        <script src="${ctx}/static/lib/jquery-easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
        <!-- easyui核心库-->
        <script src="${ctx}/static/lib/jquery-easyui/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
-
+	<script src="${ctx}/static/lib/jquery-easyui/jquery.edatagrid.js"></script>

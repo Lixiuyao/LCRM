@@ -386,11 +386,15 @@
  <update id="updateDevResult">
 	update sale_chance
   	set dev_result= #{devResult}
-  		where id= #{id} 
+  		where id= #{Id} 
  
  </update>
-  
-  
+ 
+   <select id="selectAll" resultMap="BaseResultMap">
+	   select 
+	    <include refid="Base_Column_List" />
+	    from sale_chance
+  </select>
   
   
   

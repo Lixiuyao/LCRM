@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crm.common.DataGrideResult;
+import com.crm.common.ServerResponse;
 import com.crm.entity.Customer;
+import com.crm.entity.SaleChance;
 import com.crm.mapper.CustomerMapper;
 import com.crm.service.ICustomerService;
 import com.crm.vo.CustomerVo;
@@ -19,9 +21,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 	public DataGrideResult<Customer> pageList() {
 		int total = customerMapper.pageList().size();
 		List<Customer>  rows =customerMapper.pageList();
-//		for (Customer customer : rows) {
-//			System.out.println(customer);
-//		}
+
 		DataGrideResult<Customer> list =new DataGrideResult<>(total, rows);
 		return list;
 	}
@@ -32,6 +32,15 @@ public class ICustomerServiceImpl implements ICustomerService{
 		List<CustomerVo>  rows =customerMapper.pageListGX();
 		DataGrideResult<CustomerVo> list =new DataGrideResult<>(total, rows);
 		return list;
+	}
+
+	@Override
+	public ServerResponse<Customer> selectById(Integer id) {
+		Customer customer = customerMapper.selectByPrimaryKey(id);
+		if (customer!=null) {
+			return ServerResponse.createSuccess("查找成功", customer);
+		}
+		return ServerResponse.createError("失败");
 	}
 
 }
