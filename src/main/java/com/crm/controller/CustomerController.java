@@ -35,7 +35,7 @@ public class CustomerController {
 	}
 	@RequestMapping("/lxrIndex")
 	public String lcrIndex(){
-		return "lxr_index";
+		return "customer_linkman_index";
 	}
 	
 	@RequestMapping("/selectById")

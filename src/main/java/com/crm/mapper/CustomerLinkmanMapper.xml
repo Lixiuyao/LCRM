@@ -242,4 +242,10 @@
       phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAll"  >
+  	SELECT id,link_name,gender,POSITION,office_phone,phone FROM customer_linkman  where
+  	 customer_id=#{id}
+  </select>
+  
+  
 </mapper>

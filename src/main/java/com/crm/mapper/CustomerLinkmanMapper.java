@@ -27,4 +27,6 @@ public interface CustomerLinkmanMapper {
     int updateByPrimaryKeySelective(CustomerLinkman record);
 
     int updateByPrimaryKey(CustomerLinkman record);
+
+	List<CustomerLinkman> selectAll(Integer id);
 }

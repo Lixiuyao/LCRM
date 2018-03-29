@@ -25,21 +25,25 @@
 		
 		/*展示数据的datagrid表格*/
 		$("#datagrid").edatagrid({
-			url:'${ctx}/customer/selectAll.action?saleChanceId=${param.saleChanceId}',//只查询已分配咨询师的
-			saveUrl:'${ctx}/customer/add.action?saleChanceId=${param.saleChanceId}',
-			updateUrl:'${ctx}/customer/update.action?saleChanceId=${param.saleChanceId}',
-			destroyUrl:'${ctx}/customer/delete.action',
+			url:'${ctx}/customerLinkMan/selectAll.action?customerId=${param.id}',//只查询已分配咨询师的
+			saveUrl:'${ctx}/customerLinkMan/add.action?customerId=${param.id}',
+			updateUrl:'${ctx}/customerLinkMan/update.action?customerId=${param.id}',
+			destroyUrl:'${ctx}/customerLinkMan/delete.action',
 			title:'门人',
 			singleSelect:true,
 			toolbar:'#toolbar',
 			rownumbers:true,
 			fitColumns:true,
 			columns:[[    
-			     {field:'id',title:'编号',width:50,align:'center'},    
-			     {field:'planDate',title:'日期',width:100,align:'center',editor:{type:'datebox',options:{required:true}}},    
-			     {field:'planItem',title:'计划内容',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},    
-			     {field:'exeAffect',title:'执行效果',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}}  
-			]],
+					     {field:'cb',checkbox:true,align:'center'},    
+					     {field:'id',title:'编号',width:80,align:'center'},    
+					     {field:'linkName',title:'姓名',width:100,align:'center' ,editor:{type:'validatebox',options:{required:true}}},    
+					     {field:'gender',title:'性别',width:100,align:'center',editor:{type:'validatebox',options:{required:true}}},    
+					     {field:'position',title:'职位',width:100,align:'center',editor:{type:'validatebox',options:{required:true}}},    
+					     {field:'officePhone',title:'办公电话',width:100,align:'center',editor:{type:'validatebox',options:{required:true}}},    
+					     {field:'phone',title:'手机',width:100,align:'center',editor:{type:'validatebox',options:{required:true}}},
+					     
+					]],
 			onSuccess : function() {
 				$('#datagrid').edatagrid('reload');
 				console.log("onSuccess");
@@ -89,7 +93,18 @@
 	 
 	<!-- 客户开发计划项table -->
 	<table id="datagrid" style="width:700px;height:250px" idField="id"></table>
-	
+	<!-- toolbar 开始 -->
+	<div id="toolbar">
+		
+				<div> 
+					<a class="easyui-linkbutton" href="javascript:$('#datagrid').edatagrid('addRow')" iconCls="icon-add">添加</a>&nbsp;&nbsp;
+					<a class="easyui-linkbutton" href="javascript:$('#datagrid').edatagrid('destroyRow')" iconCls="icon-remove">删除</a>&nbsp;&nbsp;
+					<a class="easyui-linkbutton" href="javascript:$('#datagrid').edatagrid('saveRow');$('#datagrid').edatagrid('reload')" iconCls="icon-save">保存</a>&nbsp;&nbsp;
+					<a class="easyui-linkbutton" href="javascript:$('#datagrid').edatagrid('cancelRow')" iconCls="icon-undo">撤销行</a>&nbsp;&nbsp;
+				</div>
+		
+	</div>
+<!-- toolbar 结束 -->
 	
 </body>
 </html>
