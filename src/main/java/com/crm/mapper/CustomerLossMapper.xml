@@ -13,6 +13,16 @@
       <arg column="loss_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+ <!--  <resultMap type="com.crm.entity.CustomerLoss" id="ResultMap">
+  		<id  column="id"  property="id" javaType="java.lang.Integer" />
+  		<result column="customer_name" property="customerName" jdbcType="java.lang.String"/>
+  		<result column="customer_manager" property="customerManager" jdbcType="java.lang.String"/>
+  		<result column="last_order_time" property="customerNo" jdbcType="java.util.Date"/>
+  
+  </resultMap> -->
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -258,4 +268,33 @@
       loss_reason = #{lossReason,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="pageList" resultMap="BaseResultMap">
+	   select 
+	    <include refid="Base_Column_List" />
+	    from customer_loss
+	    <where>                               
+	    	<if test="customerName !=null and customerName !='' ">
+	    		and customer_name like concat("%",#{customberName},"%")
+	    	</if>
+	    	<if test="customerManager != null and customerManager != '' ">
+    			and customer_manager like concat("%", #{customerManager}, "%")
+	    	</if>
+	    	<if test="status != null">
+	    		and status=#{status}
+	    	</if>
+	    
+	    </where>
+  </select>
+  
+ 
+
+  <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
+  		 SELECT
+    <include refid="Base_Column_List" />
+     from customer_loss where id = #{id}
+  
+  </select>
+  
+  
+  
 </mapper>

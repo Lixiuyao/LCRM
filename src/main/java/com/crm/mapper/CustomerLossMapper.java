@@ -1,7 +1,10 @@
 package com.crm.mapper;
 
+import com.crm.entity.Customer;
 import com.crm.entity.CustomerLoss;
 import com.crm.entity.CustomerLossExample;
+import com.crm.entity.User;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +30,10 @@ public interface CustomerLossMapper {
     int updateByPrimaryKeySelective(CustomerLoss record);
 
     int updateByPrimaryKey(CustomerLoss record);
+
+	List<CustomerLoss> pageList(CustomerLoss customerLoss);
+
+	
+
+	CustomerLoss selectAll(Integer id);
 }

@@ -145,7 +145,7 @@
 	}
 	
 	function openContactsTab(){
-		url = "${ctx}//update.action"; 
+		/* url = "${ctx}//update.action";  */
 		var id =  util.getSelectedIds($('#datagrid').datagrid("getSelections"));
 		if(id.length==0){
 			$.messager.alert("系统提示", "请选择要查看的数据");
@@ -158,11 +158,23 @@
 			
 		}
 		
-	
-		
-		
-		
 	}
+	function openHistoricalorderTab(){
+		var id =  util.getSelectedIds($('#datagrid').datagrid("getSelections"));
+		if(id.length==0){
+			$.messager.alert("系统提示", "请选择要查看的数据");
+			return;
+		}if(id.length>1){
+			$.messager.alert("系统提示", "仅允许选中一条数据查看");
+			return;
+		}if(id.length==1){
+		  window.parent.openTab('历史订单管理','${ctx}/customerOrder/index.action?id='+id,'icon-lxr');
+			
+		}
+	 }
+	
+	
+	
 	
 </script>
 </head>
@@ -178,7 +190,7 @@
          iconcls="icon-lxr" group="" id="">联系人管理</a>
         <a class="easyui-linkbutton l-btn l-btn-small" href="javascript:openNewTab('customerContact','icon-lxr')"
          iconcls="icon-jwjl" group="" id="">交往记录管理</a>
-        <a class="easyui-linkbutton l-btn l-btn-small" href="javascript:openNewTab('customerOrder','icon-lxr')"
+        <a class="easyui-linkbutton l-btn l-btn-small" href="javascript:openHistoricalorderTab('customerOrder','icon-lxr')"
          iconcls="icon-lsdd" group="" id="">历史订单查看</a>
         <div>
    			用户名:<input type="text" id="s_name"/>

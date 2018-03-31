@@ -49,7 +49,6 @@ public class CustomerLinkmanImpl implements ICustomerLinkMan {
 	@Override
 	public List<CustomerLinkman> selectAll(Integer id) {
 		List<CustomerLinkman> list = customerLinkmanMapper.selectAll(id);
-		
 		return list;
 	}
 	

@@ -3,6 +3,8 @@ package com.crm.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CustomerLoss implements Serializable {
     private Integer id;
 
@@ -11,9 +13,11 @@ public class CustomerLoss implements Serializable {
     private String customerName;
 
     private String customerManager;
-
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd ", timezone="GMT+8")
     private Date lastOrderTime;
-
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd ", timezone="GMT+8")
     private Date confirmLossTime;
 
     private Integer status;

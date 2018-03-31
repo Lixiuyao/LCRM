@@ -12,6 +12,7 @@
 			url:"${ctx}/customerGx/pageAll.action",
 			method:"get",
 			fit : true,
+			rownumbers:true,
 			fitColumns : true,
 			pagination : true,
 			toolbar: "#toolbar",

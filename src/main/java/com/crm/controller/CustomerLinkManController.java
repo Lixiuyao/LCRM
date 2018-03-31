@@ -19,8 +19,9 @@ public class CustomerLinkManController {
 	
 	@RequestMapping("/selectAll")
 	@ResponseBody
-	public List<CustomerLinkman> selectAll(Integer Id) {
-		return customerLinkMan.selectAll(Id);
+	public List<CustomerLinkman> selectAll(Integer customerId) {
+		System.err.println(customerId);
+		return customerLinkMan.selectAll(customerId);
 	}
 	
 	@RequestMapping("/delete")

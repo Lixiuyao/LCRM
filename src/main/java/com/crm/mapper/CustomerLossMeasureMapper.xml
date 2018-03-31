@@ -180,4 +180,16 @@
       measure = #{measure,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAll" resultType="int" resultMap="BaseResultMap">
+ 	 select 
+    <include refid="Base_Column_List" />
+    from customer_loss_measure
+    where loss_id = #{id,jdbcType=INTEGER}
+  
+  
+  </select>
+  
+  
+  
 </mapper>

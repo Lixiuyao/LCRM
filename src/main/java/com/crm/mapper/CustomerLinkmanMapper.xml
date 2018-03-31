@@ -12,6 +12,17 @@
       <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+  
+  <resultMap type="com.crm.entity.CustomerLinkman" id="ResultMap">
+  	   <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="link_name" property="linkName" jdbcType="VARCHAR" />
+	    <result column="gender" property="gender" jdbcType="VARCHAR" />
+	    <result column="position" property="position" jdbcType="VARCHAR" />
+	    <result column="office_phone" property="officePhone" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -242,7 +253,7 @@
       phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectAll"  >
+  <select id="selectAll" resultMap="ResultMap" parameterType="int">
   	SELECT id,link_name,gender,POSITION,office_phone,phone FROM customer_linkman  where
   	 customer_id=#{id}
   </select>
