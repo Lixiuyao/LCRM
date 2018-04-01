@@ -9,6 +9,7 @@ import com.crm.common.DataGrideResult;
 import com.crm.common.ServerResponse;
 import com.crm.entity.User;
 import com.crm.service.ICustomerService;
+import com.crm.vo.CstmrVo;
 import com.crm.vo.CustomerVo;
 
 @Controller
@@ -29,7 +30,25 @@ public class CustomerGXController {
 		return  customerService.pageListGX();
 	}
 	
+	@RequestMapping("/tubiaoindex")
+	public String tubiaoindex(){
+		return "tubiao";
+	}
 	
+	@RequestMapping("/getCountUser")
+	@ResponseBody
+	public ServerResponse<CstmrVo> getCountUser(){
+		return  customerService.getCountUser();
+	}
+	@RequestMapping("/customerService")
+	public String customerService(){
+		return "customer_service";
+	}
 	
+	@RequestMapping("/ECharts")
+	@ResponseBody
+	public ServerResponse<CstmrVo> ECharts(){
+		return  customerService.eChartsTu();
+	}
 	
 }

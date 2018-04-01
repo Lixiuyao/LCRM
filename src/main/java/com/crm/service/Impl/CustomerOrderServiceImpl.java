@@ -25,4 +25,25 @@ public class CustomerOrderServiceImpl implements ICustomerOrderService{
 		return null;
 	}
 
+
+	@Override
+	public ServerResponse delete(Integer orderId) {
+		int deleteByPrimaryKey = customerOrderMapper.deleteByPrimaryKey(orderId);
+		return null;
+	}
+
+
+	@Override
+	public ServerResponse add(CustomerOrder customerOrder) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ServerResponse update(CustomerOrder customerOrder) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

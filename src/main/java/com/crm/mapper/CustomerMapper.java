@@ -3,6 +3,7 @@ package com.crm.mapper;
 import com.crm.entity.Customer;
 import com.crm.entity.CustomerExample;
 import com.crm.entity.CustomerOrder;
+import com.crm.vo.CstmrVo;
 import com.crm.vo.CustomerVo;
 
 import java.util.List;
@@ -38,4 +39,6 @@ public interface CustomerMapper {
 	CustomerOrder findLastOrderByCustomerId(Integer id);
 
 	List<Customer> findCustomberLoss();
+
+	List<CstmrVo> getCountUser();
 }

@@ -2,6 +2,8 @@ package com.crm.mapper;
 
 import com.crm.entity.CustomerService;
 import com.crm.entity.CustomerServiceExample;
+import com.crm.vo.CstmrVo;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,6 @@ public interface CustomerServiceMapper {
     int updateByPrimaryKeySelective(CustomerService record);
 
     int updateByPrimaryKey(CustomerService record);
+
+	List<CstmrVo> eChartsTu();
 }

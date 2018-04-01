@@ -242,4 +242,14 @@
       sum = #{sum,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectById"  parameterType="int"   resultMap="BaseResultMap">
+  		select 
+    <include refid="Base_Column_List" />
+    from order_item
+    where order_id = #{id,jdbcType=INTEGER}
+  
+  
+  </select>
+  
+  
 </mapper>

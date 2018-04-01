@@ -506,6 +506,11 @@
 	    AND c.status=0;
   </select>
   
-  
+ 
+  <select id="getCountUser" resultType="com.crm.vo.CstmrVo">
+  	SELECT DISTINCT LEVEL AS LEVEL,COUNT(*) AS COUNT
+	FROM customer
+	GROUP BY LEVEL;
+  </select>
   
 </mapper>

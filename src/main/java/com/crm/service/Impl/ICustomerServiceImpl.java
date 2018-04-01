@@ -10,12 +10,17 @@ import com.crm.common.ServerResponse;
 import com.crm.entity.Customer;
 import com.crm.entity.SaleChance;
 import com.crm.mapper.CustomerMapper;
+import com.crm.mapper.CustomerServiceMapper;
 import com.crm.service.ICustomerService;
+import com.crm.vo.CstmrVo;
 import com.crm.vo.CustomerVo;
 @Service
 public class ICustomerServiceImpl implements ICustomerService{
 	@Autowired
 	private CustomerMapper customerMapper;
+	@Autowired
+	private CustomerServiceMapper customerServiceMapper;
+	
 	
 	@Override
 	public DataGrideResult<Customer> pageList() {
@@ -41,6 +46,28 @@ public class ICustomerServiceImpl implements ICustomerService{
 			return ServerResponse.createSuccess("查找成功", customer);
 		}
 		return ServerResponse.createError("失败");
+	}
+
+	@Override
+	public ServerResponse getCountUser() {
+		
+		List<CstmrVo>  rows =customerMapper.getCountUser();
+		
+		if (rows.size()>0) {
+			return ServerResponse.createSuccess("查找成功", rows);
+		}
+		return ServerResponse.createError("查找失败");
+		
+	}
+
+	@Override
+	public ServerResponse eChartsTu() {
+		List<CstmrVo>  list =customerServiceMapper.eChartsTu();
+		
+		if (list.size()>0) {
+			return ServerResponse.createSuccess("查找成功", list);
+		}
+		return ServerResponse.createError("查找失败");
 	}
 
 }

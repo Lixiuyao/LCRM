@@ -25,7 +25,7 @@
 		
 		/*展示数据的datagrid表格*/
 		$("#datagrid").edatagrid({
-			url:'${ctx}/customerOrder/selectById.action?customerId=${param.id}',//只查询已分配咨询师的
+			url:'${ctx}/customerOrder/selectById.action?customerId=${param.id}',
 			rownumbers:true,//出默认的123456789
 			singleSelect:true,
 			toolbar:'#toolbar',
@@ -33,7 +33,6 @@
 			fit:true,
 			fitColumns:true,
 			columns:[[    
-					     {field:'cb',checkbox:true,align:'center'},    
 					     {field:'customerId',title:'编号',width:80,align:'center'},    
 					     {field:'orderNo',title:'订单号',width:100,align:'center' ,editor:{type:'validatebox',options:{required:true}}},    
 					     {field:'orderDate',title:'订购日期',width:100,align:'center',editor:{type:'validatebox',options:{required:true}}},    
@@ -64,7 +63,7 @@
 	});
 	
 	function openCusDevPlanTab(id){
-		 window.parent.openTab('订单详情','${ctx}/customerOrderItem/index.action?orderId='+id+'&show='+isShow,'icon-khkfjh');
+		 window.parent.openTab('订单详情','${ctx}/customerOrderItem/index.action?orderId='+id+'&id=${param.id}','icon-khkfjh');
 	}
 
 	
@@ -91,7 +90,7 @@
 	 <br/>
 	 
 	<!-- 客户开发计划项table -->
-	<table id="datagrid" style="width:700px;height:250px" idField="id"  data-options="fit:'true'" ></table>
+	<table id="datagrid" style="width:700px;height:250px" idField="id"  data-options="fit:true" ></table>
 
 	
 </body>
