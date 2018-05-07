@@ -34,4 +34,9 @@ public interface UserMapper {
 
 	List<User> findUserName();
 
+	User findUserByName(@Param("name")String name,@Param("password")String password);
+	
+	List<Long> selectRoleIdByUserId(Long userId);
+	
+	
 }

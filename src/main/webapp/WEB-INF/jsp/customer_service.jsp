@@ -45,7 +45,7 @@
                     		            data:[
                     		                  
                     		                {value:yArrayData[0], name:xArrayData[0]},
-                    		                {value:yArrayData[1], name:xArrayData[2]},
+                    		                {value:yArrayData[1], name:xArrayData[1]},
                     		                {value:yArrayData[2], name:xArrayData[2]},
                     		              
                     		            ],

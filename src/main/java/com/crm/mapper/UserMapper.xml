@@ -3,16 +3,17 @@
 <mapper namespace="com.crm.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.crm.entity.User" >
     <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="true_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="role_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="admin" jdbcType="BIT" javaType="java.lang.Boolean"/>
     </constructor>
   </resultMap>
-   <resultMap id="ResultMap" type="com.crm.entity.User" >
+  <resultMap id="ResultMap" type="com.crm.entity.User" >
    		<id  column="true_name"  property="trueName" javaType="java.lang.String" />
   </resultMap>
   
@@ -77,7 +78,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, password, true_name, email, phone, role_name
+    id, name, password, true_name, email, phone, role_name,admin
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crm.entity.UserExample" >
     select
@@ -277,6 +278,17 @@
   <select id="findUserName" resultMap="ResultMap">
   		SELECT id, true_name  FROM USER WHERE role_name= '客户经理'
   	
+  </select>
+  <select id="findUserByName" parameterType="string" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from user WHERE NAME=#{name} AND PASSWORD=#{password};
+  </select>
+  
+  <select id="selectRoleIdByUserId" resultType="long" parameterType="long">
+  	select role_id
+  	from user_role
+  	where user_id=#{userId}
   </select>
   
   

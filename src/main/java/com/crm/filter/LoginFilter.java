@@ -8,7 +8,11 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.poi.hssf.record.PageBreakRecord.Break;
 
 public class LoginFilter implements Filter  {
 
@@ -20,21 +24,36 @@ public class LoginFilter implements Filter  {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-		//获取参数
-				String name = req.getParameter("name");
-				System.out.println(name);
-				String possword = req.getParameter("possword");
-				System.out.println(possword);
-				if ("zhangsan".equals(name) && "123".equals(possword)) {
-					//登录成功
-					//创建对象
-					HttpSession session =  null;
-					//把数据保存到域对象中
-					session.setAttribute("name",name);
-					//跳转到列表页面
-				}else{
-					//登录失败的情况
-				}
+		 // 获得在下面代码中要用的request,response,session对象
+			 HttpServletRequest servletRequest = (HttpServletRequest) req;
+			 HttpServletResponse servletResponse = (HttpServletResponse) resp;
+			 HttpSession session = servletRequest.getSession();
+		
+		        // 获得用户请求的URI
+		        String path = servletRequest.getRequestURI();
+		         //System.out.println(path);
+		         
+		         // 从session里取员工工号信息
+		         String name = (String) session.getAttribute("name");
+		
+		        
+		         // 登陆页面无需过滤
+		         if(path.indexOf("/login.jsp") > -1) {
+		             chain.doFilter(servletRequest, servletResponse);
+	             return;
+		         }
+		 
+	         // 判断信息,就跳转到登陆页面
+		         if (name == null || "".equals(name)) {
+		             // 跳转到登陆页面
+		        	 servletResponse.sendRedirect(servletRequest.getContextPath() + "/user/login.action");
+		             return;
+		         } else {
+		             // 已经登陆,继续此次请求
+		             chain.doFilter(req, resp);
+		        }
+		 
+				
 	}
 
 	@Override

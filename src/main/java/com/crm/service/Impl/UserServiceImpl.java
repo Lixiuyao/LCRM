@@ -2,6 +2,8 @@ package com.crm.service.Impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.crm.common.ServerResponse;
 import com.crm.entity.User;
 import com.crm.mapper.UserMapper;
 import com.crm.service.IUserService;
+import com.crm.util.UserContext;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 @Service
@@ -60,6 +63,19 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<User> findCustomerName() {
 		return userMapper.findUserName();
+	}
+
+	@Override
+	public ServerResponse selectByName(String name, String password,HttpServletRequest request) {
+		UserContext.session = request.getSession();
+		User user = userMapper.findUserByName(name,password);
+		
+		if (user != null) {
+			// 把当前用户放到session中
+            request.getSession().setAttribute(UserContext.USER_IN_SESSION, user);
+			return ServerResponse.createSuccess("查找成功");
+		}
+		return ServerResponse.createError("查找失败");
 	}
 
 }

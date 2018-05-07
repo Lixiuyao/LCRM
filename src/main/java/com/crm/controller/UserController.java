@@ -2,6 +2,8 @@ package com.crm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,11 @@ public class UserController {
 		
 		return "user_index";
 	}
-	
+	@RequestMapping("/index2")
+	public String index2(){
+		
+		return "user_index2";
+	}
 	
 	@RequestMapping("/pageList")
 	@ResponseBody
@@ -65,5 +71,24 @@ public class UserController {
 		return findName ;
 	}
 	
+	@RequestMapping("login")
+	public String login(){
+		return "login";
+	}
+	
+	@RequestMapping("logon")
+	@ResponseBody
+	public ServerResponse logon(String name ,String password,HttpServletRequest request){
+		System.err.println(name);
+		System.err.println(password);
+		return userService.selectByName(name,password,request);
+	}
+	
+	
+	
+	@RequestMapping("getLoginPage")
+	public String getLoginPage(){
+		return "login";
+	}
 	
 }
